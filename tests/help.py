@@ -1,2 +1,5 @@
-def float_format(value: float) -> float:
-    return float("%.3f" % value)
+from decimal import Decimal
+
+
+def float_format(value: float) -> Decimal:
+    return Decimal(value).quantize(Decimal("1.00"))
