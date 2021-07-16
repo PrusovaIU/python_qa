@@ -13,6 +13,12 @@ SQUIRE_REQUIRED_AREA = 25
 TRIANGLE_REQUIRED_AREA = 16.248
 
 
+CIRCLE_REQUIRED_PERIMETER = 62.831
+RECTANGLE_REQUIRED_PERIMETER = 6
+SQUIRE_REQUIRED_PERIMETER = 20
+TRIANGLE_REQUIRED_PERIMETER = 22
+
+
 def circle() -> Circle:
     return Circle(10)
 
@@ -46,6 +52,12 @@ def test_add_area(figure: Figure, figure_area: float):
     check_add_area(triangle(), TRIANGLE_REQUIRED_AREA)
 
 
+@pytest.mark.parametrize("figure", [circle(), rectangle(), squire(), triangle()])
+def test_add_area_error(figure: Figure):
+    with pytest.raises(ValueError):
+        figure.add_area([10, 10, 10])
+
+
 @pytest.mark.parametrize("figure, required_area",
                          [(circle(), CIRCLE_REQUIRED_AREA),
                           (rectangle(), RECTANGLE_REQUIRED_AREA),
@@ -53,3 +65,13 @@ def test_add_area(figure: Figure, figure_area: float):
                           (triangle(), TRIANGLE_REQUIRED_AREA)])
 def test_area(figure: Figure, required_area: float):
     assert float_format(figure.area()) == float_format(required_area)
+
+
+@pytest.mark.parametrize("figure, required_perimeter",
+                         [(circle(), CIRCLE_REQUIRED_PERIMETER),
+                          (rectangle(), RECTANGLE_REQUIRED_PERIMETER),
+                          (squire(), SQUIRE_REQUIRED_PERIMETER),
+                          (triangle(), TRIANGLE_REQUIRED_PERIMETER)])
+def test_perimeter(figure: Figure, required_perimeter: float):
+    perimeter = figure.perimeter()
+    assert float_format(perimeter) == float_format(required_perimeter)

@@ -5,7 +5,7 @@ class Square(Figure):
     name = "square"
 
     def __init__(self, side: float):
-        super(Square, self).__init__([side])
+        super(Square, self).__init__([side] * 4)
 
     def area(self) -> float:
         return self.sides[0] ** 2
