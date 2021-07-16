@@ -1,5 +1,6 @@
 from .figure import Figure
 
+
 class Square(Figure):
     name = "square"
 
